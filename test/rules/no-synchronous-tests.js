@@ -44,6 +44,34 @@ ruleTester.run('no-synchronous-tests', rules['no-synchronous-tests'], {
         {
             code: 'it("", () => promise.then() );',
             parserOptions: { ecmaVersion: 6 }
+        },
+        {
+            code: 'it("", async function () { });',
+            parserOptions: { ecmaVersion: 8 }
+        },
+        {
+            code: 'it("", async function () { return true; });',
+            parserOptions: { ecmaVersion: 8 }
+        },
+        {
+            code: 'it("", async function (val) { return await new Promise((resolve) => { resolve(val); }); });',
+            parserOptions: { ecmaVersion: 8 }
+        },
+        {
+            code: 'before("", async function () { });',
+            parserOptions: { ecmaVersion: 8 }
+        },
+        {
+            code: 'beforeEach("", async function () { });',
+            parserOptions: { ecmaVersion: 8 }
+        },
+        {
+            code: 'after("", async function () { });',
+            parserOptions: { ecmaVersion: 8 }
+        },
+        {
+            code: 'afterEach("", async function () { });',
+            parserOptions: { ecmaVersion: 8 }
         }
     ],
 
